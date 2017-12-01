@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    @-webkit-keyframes bolaEntra {
+        0% { transform: translateX(150px); opacity: 0; }
+        100% { transform: translateX(0px); opacity: 1; }
+    }
+    @keyframes bolaEntra {
+        0% { transform: translateX(150px); opacity: 0; }
+        100% { transform: translateX(0px); opacity: 1; }
+    }
+    @-webkit-keyframes bolaSai {
+        0% { transform: translateX(0px); opacity: 1; }
+        100% { transform: translateX(-150px); opacity: 0; }
+    }
+    @keyframes bolaSai {
+        0% { transform: translateX(0px); opacity: 1; }
+        100% { transform: translateX(-150px); opacity: 0; }
+    }
+
+
+    #container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 600px;
+        height: 250px;
+        border: 1px solid #333;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    #botaoVermelho {
+        position: absolute;
+        top: 190px;
+        left: 30%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-color: red;
+        cursor: pointer;
+    }
+
+    #botaoVerde {
+        position: absolute;
+        top: 190px;
+        left: 40%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-color: green;
+        cursor: pointer;
+    }
+
+    #botaoAzul {
+        position: absolute;
+        top: 190px;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-color: blue;
+        cursor: pointer;
+    }
+
+    #botaoAmarelo {
+        position: absolute;
+        top: 190px;
+        left: 60%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-color: yellow;
+        cursor: pointer;
+    }
+
+    #bola-vermelha {
+        position: absolute;
+        top: 20px;
+        left: 37%;
+        width: 150px;
+        height: 150px;
+        border-radius: 100px;
+        background-color: red;
+    }
+
+    #bola-verde {
+        position: absolute;
+        top: 20px;
+        left: 37%;
+        width: 150px;
+        height: 150px;
+        border-radius: 100px;
+        background-color: green;
+    }
+
+    #bola-azul {
+        position: absolute;
+        top: 20px;
+        left: 37%;
+        width: 150px;
+        height: 150px;
+        border-radius: 100px;
+        background-color: blue;
+    }
+
+    #bola-amarela {
+        position: absolute;
+        top: 20px;
+        left: 37%;
+        width: 150px;
+        height: 150px;
+        border-radius: 100px;
+        background-color: yellow;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="botaoVermelho"></div>
+        <div id="botaoVerde"></div>
+        <div id="botaoAzul"></div>
+        <div id="botaoAmarelo"></div>
+        <div id="bola-vermelha"></div>
+        <div id="bola-verde"></div>
+        <div id="bola-azul"></div>
+        <div id="bola-amarela"></div>
+    </div>
+    <script type="text/javascript">
+    var botaoVermelho, botaoVerde, botaoAzul, botaoAmarelo, bolaVermelha, bolaVerde, bolaAzul, bolaAmarela, bolaVermelhaAtiva,
+        bolaVerdeAtiva, bolaAzulAtiva, bolaAmarelaAtiva;
+
+    function elemento(el) {
+        return document.getElementById(el);
+    }
+
+    botaoVermelho = elemento("botaoVermelho");
+    botaoVerde = elemento("botaoVerde");
+    botaoAzul = elemento("botaoAzul");
+    botaoAmarelo = elemento("botaoAmarelo");
+    bolaVermelha = elemento("bola-vermelha");
+    bolaVerde = elemento("bola-verde");
+    bolaAzul = elemento("bola-azul");
+    bolaAmarela = elemento("bola-amarela");
+
+    bolaVermelha.style.display = "block";
+    bolaVerde.style.display = "none";
+    bolaAzul.style.display = "none";
+    bolaAmarela.style.display = "none";
+    bolaVermelha.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+    bolaVermelhaAtiva = false;
+    bolaVerdeAtiva = false;
+    bolaAzulAtiva = false;
+    bolaAmarelaAtiva = false;
+
+    botaoVermelho.addEventListener("click", function() {
+
+        bolaVermelhaAtiva = true;
+
+        if (bolaVerdeAtiva) {
+            bolaVerdeAtiva = false;
+            bolaVerde.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaVermelha.style.display = "block";
+            bolaVermelha.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+
+        if (bolaVermelhaAtiva) {
+            bolaVermelhaAtiva = false;
+            bolaVerde.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaAzul.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaAmarela.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaVermelha.style.display = "block";
+            bolaVermelha.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+        if (bolaAzulAtiva) {
+            bolaAzulAtiva = false;
+            bolaAzul.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaVermelha.style.display = "block";
+            bolaVermelha.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+        if (bolaAmarelaAtiva) {
+            bolaAmarelaAtiva = false;
+            bolaAmarela.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaVermelha.style.display = "block";
+            bolaVermelha.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+
+
+    }, false);
+
+    botaoVerde.addEventListener("click", function() {
+
+        bolaVerdeAtiva = true;
+
+        if (!bolaVermelhaAtiva) {
+            bolaVermelhaAtiva = true;
+            bolaVermelha.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaVerde.style.display = "block";
+            bolaVerde.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+
+        if (bolaAzulAtiva) {
+            bolaAzulAtiva = false;
+            bolaAzul.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaVerde.style.display = "block";
+            bolaVerde.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+        if (bolaAmarelaAtiva) {
+            bolaAmarelaAtiva = false;
+            bolaAmarela.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaVerde.style.display = "block";
+            bolaVerde.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+
+    }, false);
+
+    botaoAzul.addEventListener("click", function() {
+
+        bolaAzulAtiva = true;
+
+        if (!bolaVermelhaAtiva) {
+            bolaVermelhaAtiva = true;
+            bolaVermelha.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaAzul.style.display = "block";
+            bolaAzul.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+        if (bolaVerdeAtiva) {
+            bolaVerdeAtiva = false;
+            bolaVerde.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaAzul.style.display = "block";
+            bolaAzul.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+        if (bolaAmarelaAtiva) {
+            bolaAmarelaAtiva = false;
+            bolaAmarela.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaAzul.style.display = "block";
+            bolaAzul.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+
+    }, false);
+
+    botaoAmarelo.addEventListener("click", function() {
+
+        bolaAmarelaAtiva = true;
+
+        if (!bolaVermelhaAtiva) {
+            bolaVermelhaAtiva = true;
+            bolaVermelha.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaAmarela.style.display = "block";
+            bolaAmarela.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+        if (bolaVerdeAtiva) {
+            bolaVerdeAtiva = false;
+            bolaVerde.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaAmarela.style.display = "block";
+            bolaAmarela.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+        if (bolaAzulAtiva) {
+            bolaAzulAtiva = false;
+            bolaAzul.style.animation = "bolaSai 1s ease 0s 1 normal forwards";
+            bolaAmarela.style.display = "block";
+            bolaAmarela.style.animation = "bolaEntra 1s ease 0s 1 normal forwards";
+
+        }
+
+    }, false);
+    </script>
+</body>
+
+</html>
